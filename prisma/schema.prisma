@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type MakeVehicleTypes {
+  typeId   String
+  typeName String
+}
+
+model Make {
+  id           String             @id @default(auto()) @map("_id") @db.ObjectId
+  makeId       String
+  makeName     String
+  vehicleTypes MakeVehicleTypes[]
+}
